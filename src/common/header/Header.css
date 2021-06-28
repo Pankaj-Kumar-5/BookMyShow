@@ -1,0 +1,29 @@
+#header {
+    background-color: #222;
+    height: 36px;
+    padding: 8px 32px 8px 16px;
+}
+
+.rotate {
+    background-color: #ff7f7f;
+    height: 35px;
+    float: left;
+    animation: rotation 8s infinite linear;
+}
+
+.user-state-btn{
+  margin-left: 10px;
+}
+
+.btn {
+  float: right;
+}
+
+@keyframes rotation {
+    from {
+      transform: rotateY(0deg);
+    }
+    to {
+      transform: rotateY(359deg);
+    }
+  }
