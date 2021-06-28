@@ -55,7 +55,6 @@ const Controller = () => {
     }
 
     const registerUserHandler = async (registerUserForm) => {
-        debugger;
         console.log(registerUserForm);
         const rawResponse = await fetch("http://localhost:8085/api/v1/signup",
             {
@@ -67,10 +66,10 @@ const Controller = () => {
             }
         );
 
-        debugger;
+        
         const data = await rawResponse.json();
 
-        debugger;
+        
         console.log(data);
 
         if (data && "ACTIVE" === data.status) {
@@ -182,10 +181,6 @@ const Controller = () => {
             <UserLoginContext.Provider value={userLoggedIn}>
                 <Header logoutHandler={logoutHandler} />
             </UserLoginContext.Provider>
-            {/* <Switch location={background || location}>
-                <Route path="/bookShow" exact component={BookShow} />
-            </Switch> */}
-
 
             <Switch location={background || location}>
                 <Route exact path='/' render={({ history }, props) => <Home {...props} history={history} allMoviesList={allMoviesList} genres={genres} releasedMovies={releasedMovies} artists={artists} search={(data) => search(data)} />} />
@@ -193,7 +188,6 @@ const Controller = () => {
                 <Route path='/bookshow/:id' render={(props) => <BookShow {...props} />} />
                 <Route path='/confirm/:id' render={(props) => <Confirmation {...props} />} />
             </Switch>
-
 
             {background && <Route path="/login-register-modal" children={<LoginRegisterModal loginHandler={loginHandler} registerUserHandler={registerUserHandler} />} />}
         </div>
