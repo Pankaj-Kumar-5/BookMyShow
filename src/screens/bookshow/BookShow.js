@@ -17,7 +17,7 @@ const BookShow = (props) => {
   const [location, setLocation] = useState("");
   const [theatre, setTheatre] = useState("");
   const [language, setLanguage] = useState("");
-  const [showDate, setShowDate] = useState("");
+  const [showDate, setShowDate] = useState(""); 
   const [tickets, setTickets] = useState(0);
   const [unitPrice, setUnitPrice] = useState(500);
   const [availableTickets, setAvailableTickets] = useState(20);
@@ -33,10 +33,13 @@ const BookShow = (props) => {
   const [originalShows, setOriginalShows] = useState([]);
   const [showId, setShowId] = useState("");
 
+
+  
+
   useEffect(() => {
     let dataShows = null;
-
-    fetch(props.baseUrl + "movies/" + props.match.params.id + "/shows", {
+    console.log(props.baseUrl);
+    fetch("http://localhost:8085/" + "movies/" + props.match.params.id + "/shows", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -193,7 +196,7 @@ const BookShow = (props) => {
 
   return (
     <div>
-      <Header baseUrl={props.baseUrl} />
+      {/* <Header baseUrl={props.baseUrl} /> */}
       <div className="bookShow">
         <Typography className="back">
           <Link to={"/movie/" + props.match.params.id}>

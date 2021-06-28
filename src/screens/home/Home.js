@@ -48,7 +48,7 @@ const styles = makeStyles((theme) => ({
 }));
 
 
-export default function Home({ history, allMoviesList, genres, releasedMovies, artists, search }) {
+export default function Home({ history, allMoviesList, genres, releasedMovies, artists, search ,movieClickHandler}) {
     const classes = styles();
 
     const [moviesList, setMoviesList] = useState({
@@ -96,13 +96,15 @@ export default function Home({ history, allMoviesList, genres, releasedMovies, a
         console.log(movie)
     }
 
-    function movieClickHandler(movieId) {
-        history.push('/movie/' + movieId);
-    }
+    // function movieClickHandler(movieId) {
+    //     history.push('/movie/' + movieId);
+    // }
 
 
     return (
         <div>
+        
+
             <div className={classes.upcomingMoviesHeading}>
                 <span>Upcoming Movies</span>
             </div>

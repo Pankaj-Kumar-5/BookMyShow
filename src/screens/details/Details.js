@@ -80,7 +80,7 @@ export default function Details(props){
                     currentState['starIcons'] = starIconList;
                     setMovie({ ...currentState});
                 }
-                console.log(props.allMoviesList);
+                
     return (
         <div className="details">
             <div className="back">

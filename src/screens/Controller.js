@@ -4,7 +4,7 @@ import Home from '../screens/home/Home';
 import Details from '../screens/details/Details';
 import Confirmation from '../screens/confirmation/Confirmation';
 import { UserLoginContext } from "../common/UserLoginContext";
-import { Route, Switch, useLocation } from "react-router-dom";
+import { Route, Switch, useLocation,useHistory } from "react-router-dom";
 import BookShow from "./bookshow/BookShow"
 import LoginRegisterModal from "../common/login_register_modal/LoginRegisterModal";
 
@@ -17,6 +17,25 @@ const Controller = () => {
     const [releasedMovies, setReleasedMovies] = useState([]);
     const [genres, setGenres] = useState([]);
     const [artists, setArtists] = useState([]);
+    const [clickedMovie,setClickedMovie] = useState([]);
+    const [movieId,setMovieId] = useState("");
+    const history=useHistory();
+    const baseUrl = "http://localhost:8085/";
+
+    const movieClickHandler = (movieId) =>{
+        setMovieId(movieId);
+        history.push('/movie/' + movieId);
+
+        let currentState = allMoviesList.filter((mov) => {
+            console.log(mov.id,"|",movieId,"|",mov.id === movieId);
+            return mov.id === movieId
+        })[0];
+
+        console.log("clicked movie",currentState);
+        if (currentState != null && currentState != [])
+            setClickedMovie(currentState);   
+        console.log("clicked movie1",clickedMovie);
+    }
 
     const isUserLoggedIn = () => {
         return getAccessToken() !== null;
@@ -179,12 +198,12 @@ const Controller = () => {
     return (
         <div className="main-container">
             <UserLoginContext.Provider value={userLoggedIn}>
-                <Header logoutHandler={logoutHandler} />
+                <Header logoutHandler={logoutHandler} movieId={movieId}/>
             </UserLoginContext.Provider>
 
             <Switch location={background || location}>
-                <Route exact path='/' render={({ history }, props) => <Home {...props} history={history} allMoviesList={allMoviesList} genres={genres} releasedMovies={releasedMovies} artists={artists} search={(data) => search(data)} />} />
-                <Route path='/movie/:id' render={(props) => <Details {...props} allMoviesList={allMoviesList} />} />
+                <Route exact path='/' render={({ history }, props) => <Home {...props} history={history} allMoviesList={allMoviesList} genres={genres} releasedMovies={releasedMovies} artists={artists} movieClickHandler={movieClickHandler} search={(data) => search(data)}  />} />
+                <Route path='/movie/:id' render={(props) => <Details {...props} allMoviesList={allMoviesList} clickedMovie={clickedMovie}/>} />
                 <Route path='/bookshow/:id' render={(props) => <BookShow {...props} />} />
                 <Route path='/confirm/:id' render={(props) => <Confirmation {...props} />} />
             </Switch>

@@ -5,16 +5,17 @@ import { Button } from "@material-ui/core";
 import "./Header.css";
 import { Link, useLocation } from 'react-router-dom';
 
-const Header = ({ logoutHandler }) => {
+const Header = ({ logoutHandler,movieId }) => {
 
     const userLoggedIn = useContext(UserLoginContext);
 
     const location = useLocation();
 
     const displayBookShow = () => {
-        if (location.pathname === "/movie/*") {
+        if (location.pathname.includes("movie")) {
             if (userLoggedIn) {
-                return <Button id="book-show" variant="contained" color="primary" component={Link} to="/bookShow">BOOKSHOW</Button>;
+                let path = "/bookShow/"+movieId
+                return <Button id="book-show" variant="contained" color="primary" component={Link} to={path}>BOOKSHOW</Button>;
             } else {
                 return (
                     <Link
