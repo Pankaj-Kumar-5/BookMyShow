@@ -38,7 +38,6 @@ const BookShow = (props) => {
 
   useEffect(() => {
     let dataShows = null;
-    console.log(props.baseUrl);
     fetch("http://localhost:8085/" + "movies/" + props.match.params.id + "/shows", {
       method: "GET",
       headers: {
