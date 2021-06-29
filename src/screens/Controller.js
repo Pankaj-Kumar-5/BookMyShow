@@ -22,8 +22,6 @@ const Controller = () => {
     const [movieId,setMovieId] = useState("");
     const history=useHistory();
 
-        
-
     const baseUrl = ()=>{return "http://localhost:8085/api/v1/"};
 
     const movieClickHandler = (movieId) =>{
@@ -143,16 +141,13 @@ const Controller = () => {
         setAllMoviesList(data.movies);
         
         let publishedMovies = data.movies.filter(movies=>{
-            console.log(movies.status === 'PUBLISHED');
             return movies.status === 'PUBLISHED';
         });
         setPublishedMovie(publishedMovies);
 
         let releasedMovies = data.movies.filter(movies=>{
-            console.log(movies.status === 'RELEASED');
             return movies.status === 'RELEASED';
         });
-
         setReleasedMovies(releasedMovies);
     }
 
