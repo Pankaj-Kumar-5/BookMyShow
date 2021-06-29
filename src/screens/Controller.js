@@ -20,7 +20,8 @@ const Controller = () => {
     const [clickedMovie,setClickedMovie] = useState([]);
     const [movieId,setMovieId] = useState("");
     const history=useHistory();
-    const baseUrl = "http://localhost:8085/";
+
+    const baseUrl = ()=>{return "http://localhost:8085/api/v1/"};
 
     const movieClickHandler = (movieId) =>{
         setMovieId(movieId);
