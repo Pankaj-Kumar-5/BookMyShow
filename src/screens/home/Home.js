@@ -48,7 +48,7 @@ const styles = makeStyles((theme) => ({
 }));
 
 
-export default function Home({ history, allMoviesList, genres, releasedMovies, artists, search ,movieClickHandler}) {
+export default function Home({ history, allMoviesList, genres, releasedMovies, artists, search ,movieClickHandler,publishedMovie}) {
     const classes = styles();
 
     const [moviesList, setMoviesList] = useState({
@@ -110,7 +110,7 @@ export default function Home({ history, allMoviesList, genres, releasedMovies, a
             </div>
 
             <GridList cols={5} className={classes.gridListUpcomingMovies} >
-                {allMoviesList.map(movie => (
+                {publishedMovie.map(movie => (
                     <GridListTile key={movie.id}>
                         <img src={movie.poster_url} className="movie-poster" alt={movie.title} />
                         <GridListTileBar title={movie.title} />

@@ -14,12 +14,15 @@ const Controller = () => {
     const background = location.state && location.state.background;
 
     const [allMoviesList, setAllMoviesList] = useState([]);
+    const [publishedMovie, setPublishedMovie] = useState([]);
     const [releasedMovies, setReleasedMovies] = useState([]);
     const [genres, setGenres] = useState([]);
     const [artists, setArtists] = useState([]);
     const [clickedMovie,setClickedMovie] = useState([]);
     const [movieId,setMovieId] = useState("");
     const history=useHistory();
+
+        
 
     const baseUrl = ()=>{return "http://localhost:8085/api/v1/"};
 
@@ -124,12 +127,33 @@ const Controller = () => {
         }
     }
 
+    const filterReleasedMovies = () =>{
+        let releasedMovies = allMoviesList.filter(movies=>{
+            console.log(allMoviesList.status === 'RELEASED');
+            return allMoviesList.status === 'RELEASED';
+        });
+        console.log("released MOvies",allMoviesList)
+        setReleasedMovies(releasedMovies);
+        }
+
     async function loadData() {
 
-        const rawResponse = await fetch("http://localhost:8085/api/v1/movies")
+        const rawResponse = await fetch("http://localhost:8085/api/v1/movies?page=1&limit=20")
         const data = await rawResponse.json()
         setAllMoviesList(data.movies);
-        setReleasedMovies(data.movies);
+        
+        let publishedMovies = data.movies.filter(movies=>{
+            console.log(movies.status === 'PUBLISHED');
+            return movies.status === 'PUBLISHED';
+        });
+        setPublishedMovie(publishedMovies);
+
+        let releasedMovies = data.movies.filter(movies=>{
+            console.log(movies.status === 'RELEASED');
+            return movies.status === 'RELEASED';
+        });
+
+        setReleasedMovies(releasedMovies);
     }
 
     async function loadGenres() {
@@ -203,7 +227,7 @@ const Controller = () => {
             </UserLoginContext.Provider>
 
             <Switch location={background || location}>
-                <Route exact path='/' render={({ history }, props) => <Home {...props} history={history} allMoviesList={allMoviesList} genres={genres} releasedMovies={releasedMovies} artists={artists} movieClickHandler={movieClickHandler} search={(data) => search(data)}  />} />
+                <Route exact path='/' render={({ history }, props) => <Home {...props} history={history} allMoviesList={allMoviesList} genres={genres} releasedMovies={releasedMovies} publishedMovie={publishedMovie} artists={artists} movieClickHandler={movieClickHandler} search={(data) => search(data)}  />} />
                 <Route path='/movie/:id' render={(props) => <Details {...props} allMoviesList={allMoviesList} clickedMovie={clickedMovie}/>} />
                 <Route path='/bookshow/:id' render={(props) => <BookShow {...props} />} />
                 <Route path='/confirm/:id' render={(props) => <Confirmation {...props} />} />
