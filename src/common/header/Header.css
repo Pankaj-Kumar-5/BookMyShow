@@ -1,29 +1,25 @@
 #header {
-    background-color: #222;
-    height: 36px;
-    padding: 8px 32px 8px 16px;
+  background-color: #222;
+  height: 36px;
+  padding: 8px 32px 8px 16px;
 }
-
 .rotate {
-    background-color: #ff7f7f;
-    height: 35px;
-    float: left;
-    animation: rotation 8s infinite linear;
+  background-color: #FF7F7F;
+  height: 35px;
+  float: left;
+  animation: rotation 8s infinite linear;
 }
-
-.user-state-btn{
-  margin-left: 14px;
-}
-
 .btn {
-  float: right;
+float: right;
 }
-
+#book-show {
+margin-right: 10px;
+}
 @keyframes rotation {
-    from {
-      transform: rotateY(0deg);
-    }
-    to {
-      transform: rotateY(359deg);
-    }
+  from {
+    transform: rotateY(0deg);
   }
+  to {
+    transform: rotateY(359deg);
+  }
+}

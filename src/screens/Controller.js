@@ -22,7 +22,7 @@ const Controller = () => {
     const [movieId,setMovieId] = useState("");
     const history=useHistory();
 
-    const baseUrl = ()=>{return "http://localhost:8085/api/v1/"};
+    const baseUrl =  "http://localhost:8085/api/v1/";
 
     const movieClickHandler = (movieId) =>{
         setMovieId(movieId);
@@ -223,8 +223,8 @@ const Controller = () => {
 
             <Switch location={background || location}>
                 <Route exact path='/' render={({ history }, props) => <Home {...props} history={history} allMoviesList={allMoviesList} genres={genres} releasedMovies={releasedMovies} publishedMovie={publishedMovie} artists={artists} movieClickHandler={movieClickHandler} search={(data) => search(data)}  />} />
-                <Route path='/movie/:id' render={(props) => <Details {...props} allMoviesList={allMoviesList} clickedMovie={clickedMovie}/>} />
-                <Route path='/bookshow/:id' render={(props) => <BookShow {...props} />} />
+                <Route path='/movie/:id' render={(props) => <Details {...props} baseUrl={baseUrl}  clickedMovie={clickedMovie}/>} />
+                <Route path='/bookshow/:id' render={(props) => <BookShow {...props}  baseUrl={baseUrl} />} />
                 <Route path='/confirm/:id' render={(props) => <Confirmation {...props} />} />
             </Switch>
 
