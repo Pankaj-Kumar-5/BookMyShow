@@ -34,7 +34,7 @@ const Controller = () => {
         })[0];
 
         console.log("clicked movie",currentState);
-        if (currentState != null && currentState != [])
+        if (currentState !== null && currentState !== [])
             setClickedMovie(currentState);   
         console.log("clicked movie1",clickedMovie);
     }
@@ -124,16 +124,7 @@ const Controller = () => {
             setUserLoggedIn(false);
         }
     }
-
-    const filterReleasedMovies = () =>{
-        let releasedMovies = allMoviesList.filter(movies=>{
-            console.log(allMoviesList.status === 'RELEASED');
-            return allMoviesList.status === 'RELEASED';
-        });
-        console.log("released MOvies",allMoviesList)
-        setReleasedMovies(releasedMovies);
-        }
-
+    
     async function loadData() {
 
         const rawResponse = await fetch("http://localhost:8085/api/v1/movies?page=1&limit=20")
@@ -205,7 +196,7 @@ const Controller = () => {
             return filter;
         })
 
-        if (filertredResult != null && filertredResult != [])
+        if (filertredResult !== null && filertredResult !== [])
             setReleasedMovies(filertredResult);
     }
 
