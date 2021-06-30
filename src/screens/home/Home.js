@@ -96,11 +96,6 @@ export default function Home({ history, allMoviesList, genres, releasedMovies, a
         console.log(movie)
     }
 
-    // function movieClickHandler(movieId) {
-    //     history.push('/movie/' + movieId);
-    // }
-
-
     return (
         <div>
         

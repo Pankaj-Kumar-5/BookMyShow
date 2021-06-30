@@ -59,9 +59,7 @@ export default function Details(props){
                             autoplay: 1
                         }
                     }
-                    
-        // let movies = selectedMovie['movie'];
-        
+                            
         const artistClickHandler = (url) => {
                     window.location = url;
                 }
