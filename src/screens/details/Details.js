@@ -130,7 +130,6 @@ export default function Details(props){
                         <YouTube
                             videoId={getVideoUrl()}
                             opts={opts}
-                            // onReady={this._onReady}
                         />
                     </div>
                 </div>
