@@ -52,7 +52,7 @@ const Controller = () => {
     const loginHandler = async (username, password) => {
         const authorization = window.btoa(`${username}:${password}`);
 
-        const rawResponse = await fetch("http://localhost:8085/api/v1/auth/login",
+        const rawResponse = await fetch(baseUrl+"auth/login",
             {
                 method: "POST",
                 headers: {
@@ -77,7 +77,7 @@ const Controller = () => {
 
     const registerUserHandler = async (registerUserForm) => {
         console.log(registerUserForm);
-        const rawResponse = await fetch("http://localhost:8085/api/v1/signup",
+        const rawResponse = await fetch(baseUrl+"signup",
             {
                 method: "POST",
                 headers: {
@@ -103,7 +103,7 @@ const Controller = () => {
     const logoutHandler = async () => {
         const authorization = getAccessToken();
 
-        const rawResponse = await fetch("http://localhost:8085/api/v1/auth/logout",
+        const rawResponse = await fetch(baseUrl+"logout",
             {
                 method: "POST",
                 headers: {
@@ -124,10 +124,10 @@ const Controller = () => {
             setUserLoggedIn(false);
         }
     }
-    
+
     async function loadData() {
 
-        const rawResponse = await fetch("http://localhost:8085/api/v1/movies?page=1&limit=20")
+        const rawResponse = await fetch(baseUrl+"movies?page=1&limit=20")
         const data = await rawResponse.json()
         setAllMoviesList(data.movies);
         
@@ -144,14 +144,14 @@ const Controller = () => {
 
     async function loadGenres() {
 
-        const rawResponse = await fetch("http://localhost:8085/api/v1/genres")
+        const rawResponse = await fetch(baseUrl+"genres")
         const data = await rawResponse.json()
         setGenres(data.genres);
     }
 
     async function loadArtists() {
 
-        const rawResponse = await fetch("http://localhost:8085/api/v1/artists")
+        const rawResponse = await fetch(baseUrl+"artists")
         const data = await rawResponse.json()
         setArtists(data.artists);
     }
