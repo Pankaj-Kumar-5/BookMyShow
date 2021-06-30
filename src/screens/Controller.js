@@ -29,14 +29,12 @@ const Controller = () => {
         history.push('/movie/' + movieId);
 
         let currentState = allMoviesList.filter((mov) => {
-            console.log(mov.id,"|",movieId,"|",mov.id === movieId);
             return mov.id === movieId
         })[0];
 
-        console.log("clicked movie",currentState);
         if (currentState !== null && currentState !== [])
             setClickedMovie(currentState);   
-        console.log("clicked movie1",clickedMovie);
+
     }
 
     const isUserLoggedIn = () => {
@@ -76,7 +74,6 @@ const Controller = () => {
     }
 
     const registerUserHandler = async (registerUserForm) => {
-        console.log(registerUserForm);
         const rawResponse = await fetch(baseUrl+"signup",
             {
                 method: "POST",
@@ -89,9 +86,6 @@ const Controller = () => {
 
         
         const data = await rawResponse.json();
-
-        
-        console.log(data);
 
         if (data && "ACTIVE" === data.status) {
             return true;
@@ -112,10 +106,6 @@ const Controller = () => {
                 }
             }
         );
-
-        const responseHeaders = rawResponse.headers;
-
-        console.log(responseHeaders);
 
         if (rawResponse.status === 200) {
             window.localStorage.removeItem('user-details');

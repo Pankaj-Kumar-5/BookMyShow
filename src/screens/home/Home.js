@@ -64,21 +64,18 @@ export default function Home({ history, allMoviesList, genres, releasedMovies, a
         const movie = moviesList;
         movie['movieName'] = event.target.value;
         setMoviesList({ ...movie });
-        console.log(movie)
     }
 
     function genreSelectHandler(event) {
         const movie = moviesList;
         movie['genres'] = event.target.value;
         setMoviesList({ ...movie });
-        console.log(movie)
     }
 
     function artistSelectHandler(event) {
         const movie = moviesList;
         movie['artists'] = event.target.value;
         setMoviesList({ ...movie });
-        console.log(movie)
     }
 
 
@@ -86,14 +83,12 @@ export default function Home({ history, allMoviesList, genres, releasedMovies, a
         const movie = moviesList;
         movie['release_date_start'] = event.target.value;
         setMoviesList({ ...movie });
-        console.log(movie)
     }
 
     function releaseDateEndHandler(event) {
         const movie = moviesList;
         movie['release_date_end'] = event.target.value;
         setMoviesList({ ...movie });
-        console.log(movie)
     }
 
     return (
